@@ -43,9 +43,20 @@ INSTALLED_APPS = [
     'api',
 ]
 
+REDIS_URL = "redis://localhost:6379/0"
+
+RATE_LIMIT_WINDOW = 60
+RATE_LIMIT_LIMIT = 5
+
+RATE_LIMITED_PATHS = [
+    {"path": "/api/shorten", "methods": ["POST"]}
+    # for more paths in the future -------------
+]
+
+
 MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware',
-
+    'api.middleware.SlidingWindowLogRateLimiterMiddleware',
 
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
