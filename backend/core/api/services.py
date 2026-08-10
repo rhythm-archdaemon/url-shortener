@@ -1,9 +1,9 @@
-from .models import URl
+from .models import URL
 import string
 import secrets
 
 def generate_short_url(original_url: str):
-    existing = URL.objects.filter(original_url)=original_url).first()
+    existing = URL.objects.filter(original_url = original_url).first()
     if existing:
         return existing, False # here false indicates it is newly created
     
