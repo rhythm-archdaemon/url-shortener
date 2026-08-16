@@ -1,184 +1,311 @@
-.counter {
-  font-size: 16px;
-  padding: 5px 10px;
-  border-radius: 5px;
-  color: var(--accent);
-  background: var(--accent-bg);
-  border: 2px solid transparent;
-  transition: border-color 0.3s;
-  margin-bottom: 24px;
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap');
 
-  &:hover {
-    border-color: var(--accent-border);
-  }
-  &:focus-visible {
-    outline: 2px solid var(--accent);
-    outline-offset: 2px;
-  }
+*, *::before, *::after {
+  box-sizing: border-box;
 }
 
-.hero {
-  position: relative;
-
-  .base,
-  .framework,
-  .vite {
-    inset-inline: 0;
-    margin: 0 auto;
-  }
-
-  .base {
-    width: 170px;
-    position: relative;
-    z-index: 0;
-  }
-
-  .framework,
-  .vite {
-    position: absolute;
-  }
-
-  .framework {
-    z-index: 1;
-    top: 34px;
-    height: 28px;
-    transform: perspective(2000px) rotateZ(300deg) rotateX(44deg) rotateY(39deg)
-      scale(1.4);
-  }
-
-  .vite {
-    z-index: 0;
-    top: 107px;
-    height: 26px;
-    width: auto;
-    transform: perspective(2000px) rotateZ(300deg) rotateX(40deg) rotateY(39deg)
-      scale(0.8);
-  }
+:root {
+  --font-mono: 'IBM Plex Mono', 'Courier New', monospace;
+  --color-black: #0a0a0a;
+  --color-white: #ffffff;
+  --color-gray-100: #f5f5f5;
+  --color-gray-200: #e8e8e8;
+  --color-gray-400: #999999;
+  --color-gray-600: #595959;
+  --color-accent: #0a0a0a;
+  --border: 1px solid #e8e8e8;
+  --border-heavy: 2px solid #0a0a0a;
 }
 
-#center {
-  display: flex;
-  flex-direction: column;
-  gap: 25px;
-  place-content: center;
-  place-items: center;
-  flex-grow: 1;
-
-  @media (max-width: 1024px) {
-    padding: 32px 20px 24px;
-    gap: 18px;
-  }
-}
-
-#next-steps {
-  display: flex;
-  border-top: 1px solid var(--border);
-  text-align: left;
-
-  & > div {
-    flex: 1 1 0;
-    padding: 32px;
-    @media (max-width: 1024px) {
-      padding: 24px 20px;
-    }
-  }
-
-  .icon {
-    margin-bottom: 16px;
-    width: 22px;
-    height: 22px;
-  }
-
-  @media (max-width: 1024px) {
-    flex-direction: column;
-    text-align: center;
-  }
-}
-
-#docs {
-  border-right: 1px solid var(--border);
-
-  @media (max-width: 1024px) {
-    border-right: none;
-    border-bottom: 1px solid var(--border);
-  }
-}
-
-#next-steps ul {
-  list-style: none;
+html, body, #root {
+  margin: 0;
   padding: 0;
-  display: flex;
-  gap: 8px;
-  margin: 32px 0 0;
-
-  .logo {
-    height: 18px;
-  }
-
-  a {
-    color: var(--text-h);
-    font-size: 16px;
-    border-radius: 6px;
-    background: var(--social-bg);
-    display: flex;
-    padding: 6px 12px;
-    align-items: center;
-    gap: 8px;
-    text-decoration: none;
-    transition: box-shadow 0.3s;
-
-    &:hover {
-      box-shadow: var(--shadow);
-    }
-    .button-icon {
-      height: 18px;
-      width: 18px;
-    }
-  }
-
-  @media (max-width: 1024px) {
-    margin-top: 20px;
-    flex-wrap: wrap;
-    justify-content: center;
-
-    li {
-      flex: 1 1 calc(50% - 8px);
-    }
-
-    a {
-      width: 100%;
-      justify-content: center;
-      box-sizing: border-box;
-    }
-  }
+  background-color: var(--color-white);
+  color: var(--color-black);
+  font-family: var(--font-mono);
+  -webkit-font-smoothing: antialiased;
 }
 
-#spacer {
-  height: 88px;
-  border-top: 1px solid var(--border);
-  @media (max-width: 1024px) {
-    height: 48px;
-  }
+/* Override Ant Design global font */
+.ant-typography,
+.ant-table,
+.ant-btn,
+.ant-input,
+.ant-card,
+.ant-spin,
+.ant-pagination,
+.ant-select,
+.ant-form,
+.ant-form-item,
+.ant-form-item-label > label {
+  font-family: var(--font-mono) !important;
 }
 
-.ticks {
-  position: relative;
+/* Header */
+.app-header {
+  background: var(--color-white) !important;
+  border-bottom: var(--border-heavy);
+  padding: 32px 48px !important;
+  height: auto !important;
+  line-height: 1 !important;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.app-header-inner {
+  max-width: 960px;
+  margin: 0 auto;
   width: 100%;
+}
 
-  &::before,
-  &::after {
-    content: '';
-    position: absolute;
-    top: -4.5px;
-    border: 5px solid transparent;
+.app-title {
+  font-family: var(--font-mono) !important;
+  font-size: clamp(18px, 2.5vw, 28px) !important;
+  font-weight: 700 !important;
+  color: var(--color-black) !important;
+  letter-spacing: -0.5px;
+  margin: 0 !important;
+  line-height: 1.2 !important;
+}
+
+.app-title-label {
+  display: block;
+  font-size: 11px;
+  font-weight: 400;
+  color: var(--color-gray-400);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom: 6px;
+}
+
+/* Layout */
+.app-layout {
+  min-height: 100vh;
+  background: var(--color-white) !important;
+}
+
+.app-content {
+  padding: 48px 48px;
+  max-width: 960px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+/* Section label */
+.section-label {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--color-gray-400);
+  margin-bottom: 12px;
+  display: block;
+}
+
+/* Shortener Form Card */
+.shortener-card {
+  border: var(--border-heavy) !important;
+  border-radius: 0 !important;
+  background: var(--color-white) !important;
+  margin-bottom: 32px;
+  box-shadow: 4px 4px 0px var(--color-black) !important;
+}
+
+.shortener-card .ant-card-body {
+  padding: 32px !important;
+}
+
+/* Table Card */
+.table-card {
+  border: var(--border-heavy) !important;
+  border-radius: 0 !important;
+  background: var(--color-white) !important;
+  box-shadow: 4px 4px 0px var(--color-black) !important;
+}
+
+.table-card .ant-card-body {
+  padding: 0 !important;
+}
+
+/* Ant Table overrides */
+.ant-table {
+  font-family: var(--font-mono) !important;
+  background: transparent !important;
+}
+
+.ant-table-thead > tr > th {
+  background: var(--color-black) !important;
+  color: var(--color-white) !important;
+  font-family: var(--font-mono) !important;
+  font-size: 11px !important;
+  font-weight: 600 !important;
+  letter-spacing: 1.5px !important;
+  text-transform: uppercase !important;
+  border-bottom: none !important;
+  padding: 14px 20px !important;
+}
+
+.ant-table-thead > tr > th::before {
+  display: none !important;
+}
+
+.ant-table-tbody > tr > td {
+  font-family: var(--font-mono) !important;
+  font-size: 13px !important;
+  color: var(--color-black) !important;
+  border-bottom: var(--border) !important;
+  padding: 14px 20px !important;
+  vertical-align: middle;
+}
+
+.ant-table-tbody > tr:hover > td {
+  background: var(--color-gray-100) !important;
+}
+
+.ant-table-tbody > tr:last-child > td {
+  border-bottom: none !important;
+}
+
+/* Ant Input overrides */
+.ant-input,
+.ant-input-affix-wrapper {
+  font-family: var(--font-mono) !important;
+  border-radius: 0 !important;
+  border: var(--border-heavy) !important;
+  font-size: 13px !important;
+  padding: 10px 14px !important;
+  color: var(--color-black) !important;
+  background: var(--color-white) !important;
+  box-shadow: none !important;
+  transition: border-color 0.15s;
+}
+
+.ant-input:focus,
+.ant-input-affix-wrapper:focus,
+.ant-input-affix-wrapper-focused {
+  border-color: var(--color-black) !important;
+  box-shadow: 3px 3px 0 var(--color-black) !important;
+}
+
+/* Ant Button overrides */
+.ant-btn {
+  font-family: var(--font-mono) !important;
+  border-radius: 0 !important;
+  font-size: 12px !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.5px !important;
+  border: var(--border-heavy) !important;
+  box-shadow: 3px 3px 0 var(--color-black) !important;
+  transition: transform 0.1s, box-shadow 0.1s !important;
+}
+
+.ant-btn:hover {
+  transform: translate(-1px, -1px);
+  box-shadow: 4px 4px 0 var(--color-black) !important;
+}
+
+.ant-btn:active {
+  transform: translate(2px, 2px);
+  box-shadow: 1px 1px 0 var(--color-black) !important;
+}
+
+.ant-btn-primary {
+  background: var(--color-black) !important;
+  color: var(--color-white) !important;
+  border-color: var(--color-black) !important;
+}
+
+.ant-btn-primary:hover {
+  background: var(--color-black) !important;
+  color: var(--color-white) !important;
+}
+
+.ant-btn-default {
+  background: var(--color-white) !important;
+  color: var(--color-black) !important;
+  border-color: var(--color-black) !important;
+}
+
+/* Ant Typography Link */
+.ant-typography a,
+a.ant-typography {
+  font-family: var(--font-mono) !important;
+  color: var(--color-black) !important;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  font-weight: 600;
+}
+
+/* Pagination */
+.ant-pagination {
+  font-family: var(--font-mono) !important;
+  padding: 16px 20px !important;
+  border-top: var(--border) !important;
+}
+
+.ant-pagination-item {
+  border-radius: 0 !important;
+  border: var(--border-heavy) !important;
+  font-family: var(--font-mono) !important;
+}
+
+.ant-pagination-item-active {
+  background: var(--color-black) !important;
+  border-color: var(--color-black) !important;
+}
+
+.ant-pagination-item-active a {
+  color: var(--color-white) !important;
+}
+
+.ant-pagination-prev .ant-pagination-item-link,
+.ant-pagination-next .ant-pagination-item-link {
+  border-radius: 0 !important;
+  border: var(--border-heavy) !important;
+}
+
+/* Divider */
+.ant-divider {
+  border-color: var(--color-black) !important;
+  border-width: 2px !important;
+  margin: 0 !important;
+}
+
+/* Spin */
+.ant-spin-text {
+  font-family: var(--font-mono) !important;
+  color: var(--color-gray-400) !important;
+  font-size: 12px !important;
+}
+
+/* Analytics section */
+.analytics-wrapper {
+  margin-top: 32px;
+  border: var(--border-heavy);
+  box-shadow: 4px 4px 0 var(--color-black);
+}
+
+/* Click count badge */
+.click-count {
+  font-family: var(--font-mono);
+  font-weight: 700;
+  color: var(--color-black) !important;
+  font-size: 14px;
+}
+
+/* Responsive */
+@media (max-width: 640px) {
+  .app-header {
+    padding: 20px 20px !important;
   }
 
-  &::before {
-    left: 0;
-    border-left-color: var(--border);
+  .app-content {
+    padding: 24px 20px;
   }
-  &::after {
-    right: 0;
-    border-right-color: var(--border);
+
+  .app-title {
+    font-size: 16px !important;
   }
 }
