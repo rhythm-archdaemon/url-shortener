@@ -118,7 +118,7 @@ export const Dashboard: React.FC = () => {
         <div className="app-header-inner">
           <span className="app-title-label">tool / v1.0</span>
           <Title level={1} className="app-title">
-            URL Shortener with custom&nbsp;&nbsp;+&nbsp;&nbsp; Sliding Log Rate Limiter
+            URL Shortener&nbsp;&nbsp;+&nbsp;&nbsp; custom Sliding Log Rate Limiter
           </Title>
         </div>
       </Header>
