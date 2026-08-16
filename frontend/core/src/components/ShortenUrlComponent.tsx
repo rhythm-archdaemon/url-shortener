@@ -9,7 +9,7 @@ interface ShortenerFormProps {
   onLinkCreated: (newLink: URLRecord) => void;
 }
 
-export const ShortenerForm: React.FC<ShortenerFormProps> = ({ onLinkCreated }) => {
+export const ShortenUrlComponent: React.FC<ShortenerFormProps> = ({ onLinkCreated }) => {
   const [url, setUrl] = useState('');
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);

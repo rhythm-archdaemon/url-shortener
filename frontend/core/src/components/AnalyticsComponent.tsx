@@ -9,7 +9,7 @@ interface AnalyticsPageProps {
   shortUrlCode: string;
 }
 
-export const AnalyticsPage: React.FC<AnalyticsPageProps> = ({ shortUrlCode }) => {
+export const AnalyticsComponent: React.FC<AnalyticsPageProps> = ({ shortUrlCode }) => {
   const [data, setData] = useState<AnalyticsResponse | null>(null);
   const [loading, setLoading] = useState(true);
   const [refreshing, setRefreshing] = useState(false);
@@ -40,7 +40,7 @@ export const AnalyticsPage: React.FC<AnalyticsPageProps> = ({ shortUrlCode }) =>
     if (!hasFetched.current) {
       fetchAnalytics(false);
       hasFetched.current = true;
-
+    }
   }, [shortUrlCode]);
 
   useEffect(() => {
